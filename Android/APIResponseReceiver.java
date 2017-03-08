@@ -26,47 +26,48 @@ public class APIResponseReceiver extends BroadcastReceiver {
 
     private IReceiverCallBack receiverCallBack; // Interface uses to send ParsedResponse
 
-    private String[] apiActionsArray = {MyAppUrls.FILTER_BR_NEWS_FEEDS, //Home news feeds response
-            MyAppUrls.FILTER_BR_POPULAR_BEATS, //Popular beats response
-            MyAppUrls.FILTER_BR_EXPAND_BEAT, //Expand View detail of Popular beats
-            MyAppUrls.FILTER_BR_GET_LIKERS, //Liker List
-            MyAppUrls.FILTER_BR_FORGOT_PASSWORD, //Reset Password
-            MyAppUrls.FILTER_BR_GET_USER_PROFILE, //Get user Profile
-            MyAppUrls.FILTER_BR_LOGOUT, //Logout user from myapp
-            MyAppUrls.FILTER_BR_GET_BEATS, //get beats from myapp
-            MyAppUrls.FILTER_BR_GET_TRACKS, //get tracks from myapp
-            MyAppUrls.FILTER_BR_GET_REPOSTS, //get reposts from myapp
-            MyAppUrls.FILTER_BR_EXPLORE_SEARCH_BEAT, //get explore beats from myapp
-            MyAppUrls.FILTER_BR_EXPLORE_SEARCH_TRACK, //get explore tracks from myapp
-            MyAppUrls.FILTER_BR_SEARCH_USER, //get explore users from myapp
-            MyAppUrls.FILTER_BR_EXPLORE_SEARCH_HASHTAG, // get explore tags from myapp
-            MyAppUrls.FILTER_BR_SEARCH_HASHTAGS, // get explore tags from myapp
-            MyAppUrls.FILTER_BR_CHANGE_PASS, // To change password
-            MyAppUrls.FILTER_BR_LOCATION_LIBRARY, // To get location from google library
-            MyAppUrls.FILTER_BR_GET_NOTIFICATION, //get notifications for user account
-            MyAppUrls.FILTER_BR_MARK_READ_NOTIFI, //Mark notifications as read
-            MyAppUrls.FILTER_BR_EDIT_USER, // to edit user profile
-            MyAppUrls.FILTER_BR_UPLOAD_BEAT, // To beat upload
-            MyAppUrls.FILTER_BR_UPLOAD_TRACK, // To track upload
-            MyAppUrls.FILTER_BR_GET_REPOSTERS, // To get list of reposters
-            MyAppUrls.FILTER_BR_DELETE_BEAT, // To delete beat of feed
-            MyAppUrls.FILTER_BR_RECOMMENDED_USER, // To get Follow list for Getting started Flow
-            MyAppUrls.FILTER_BR_GET_GENRES, // To get Genres
-            MyAppUrls.FILTER_BR_ADD_GENRES_USER, // To add Genres
-            MyAppUrls.FILTER_BR_USER_DEACTIVATE, // To deactivate account
-            MyAppUrls.FILTER_BR_FOLLOW_USER, // To follow user
-            MyAppUrls.FILTER_BR_UNFOLLOW_USER, // To unfollow user
-            MyAppUrls.FILTER_BR_FANS_USER, // To get fans
-            MyAppUrls.FILTER_BR_FOLLOW_LIST_USER, // To get Followers
-            MyAppUrls.FILTER_BR_GET_FLAG_CATEGORY, // To get flag categories
-            MyAppUrls.FILTER_BR_FLAG_AUDIO, // To flag and audio or video
-            MyAppUrls.FILTER_BR_GET_PUSH_NOTIFI, // To get push notification settings
-            MyAppUrls.FILTER_BR_PUT_PUSH_NOTIFI, // To add push notification settings
-            MyAppUrls.FILTER_BR_GET_COLLABORATORS, //To Get beat collaborators
-            MyAppUrls.FILTER_BR_GET_PRESET, //To Get presets
-            MyAppUrls.FILTER_BR_AUDIO_SHARE_COUNT, // Update Share count
-            MyAppUrls.FILTER_BR_CHANGE_ALBUM_ART, //To change image of media
-            MyAppUrls.FILTER_BR_RUNNING_CONTESTS
+    private String[] apiActionsArray = {
+        MyAppUrls.FILTER_BR_NEWS_FEEDS, //Home news feeds response
+        MyAppUrls.FILTER_BR_POPULAR_BEATS, //Popular beats response
+        MyAppUrls.FILTER_BR_EXPAND_BEAT, //Expand View detail of Popular beats
+        MyAppUrls.FILTER_BR_GET_LIKERS, //Liker List
+        MyAppUrls.FILTER_BR_FORGOT_PASSWORD, //Reset Password
+        MyAppUrls.FILTER_BR_GET_USER_PROFILE, //Get user Profile
+        MyAppUrls.FILTER_BR_LOGOUT, //Logout user from myapp
+        MyAppUrls.FILTER_BR_GET_BEATS, //get beats from myapp
+        MyAppUrls.FILTER_BR_GET_TRACKS, //get tracks from myapp
+        MyAppUrls.FILTER_BR_GET_REPOSTS, //get reposts from myapp
+        MyAppUrls.FILTER_BR_EXPLORE_SEARCH_BEAT, //get explore beats from myapp
+        MyAppUrls.FILTER_BR_EXPLORE_SEARCH_TRACK, //get explore tracks from myapp
+        MyAppUrls.FILTER_BR_SEARCH_USER, //get explore users from myapp
+        MyAppUrls.FILTER_BR_EXPLORE_SEARCH_HASHTAG, // get explore tags from myapp
+        MyAppUrls.FILTER_BR_SEARCH_HASHTAGS, // get explore tags from myapp
+        MyAppUrls.FILTER_BR_CHANGE_PASS, // To change password
+        MyAppUrls.FILTER_BR_LOCATION_LIBRARY, // To get location from google library
+        MyAppUrls.FILTER_BR_GET_NOTIFICATION, //get notifications for user account
+        MyAppUrls.FILTER_BR_MARK_READ_NOTIFI, //Mark notifications as read
+        MyAppUrls.FILTER_BR_EDIT_USER, // to edit user profile
+        MyAppUrls.FILTER_BR_UPLOAD_BEAT, // To beat upload
+        MyAppUrls.FILTER_BR_UPLOAD_TRACK, // To track upload
+        MyAppUrls.FILTER_BR_GET_REPOSTERS, // To get list of reposters
+        MyAppUrls.FILTER_BR_DELETE_BEAT, // To delete beat of feed
+        MyAppUrls.FILTER_BR_RECOMMENDED_USER, // To get Follow list for Getting started Flow
+        MyAppUrls.FILTER_BR_GET_GENRES, // To get Genres
+        MyAppUrls.FILTER_BR_ADD_GENRES_USER, // To add Genres
+        MyAppUrls.FILTER_BR_USER_DEACTIVATE, // To deactivate account
+        MyAppUrls.FILTER_BR_FOLLOW_USER, // To follow user
+        MyAppUrls.FILTER_BR_UNFOLLOW_USER, // To unfollow user
+        MyAppUrls.FILTER_BR_FANS_USER, // To get fans
+        MyAppUrls.FILTER_BR_FOLLOW_LIST_USER, // To get Followers
+        MyAppUrls.FILTER_BR_GET_FLAG_CATEGORY, // To get flag categories
+        MyAppUrls.FILTER_BR_FLAG_AUDIO, // To flag and audio or video
+        MyAppUrls.FILTER_BR_GET_PUSH_NOTIFI, // To get push notification settings
+        MyAppUrls.FILTER_BR_PUT_PUSH_NOTIFI, // To add push notification settings
+        MyAppUrls.FILTER_BR_GET_COLLABORATORS, //To Get beat collaborators
+        MyAppUrls.FILTER_BR_GET_PRESET, //To Get presets
+        MyAppUrls.FILTER_BR_AUDIO_SHARE_COUNT, // Update Share count
+        MyAppUrls.FILTER_BR_CHANGE_ALBUM_ART, //To change image of media
+        MyAppUrls.FILTER_BR_RUNNING_CONTESTS
     };
 
     /**
