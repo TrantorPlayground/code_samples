@@ -1,0 +1,41 @@
+<h1 class="alert h1-heading">Newsstand</h1>
+
+<?php 
+if(!empty($this->news)):
+    foreach ($this->news as $key => $news){
+        ?>
+        <div class="content-section-a">
+        
+        	<div class="container">
+        
+        		<div class="row">
+        			<div class="col-lg-5 <?php echo $key % 2 == 0 ? '' : 'col-lg-offset-1 col-sm-push-6';?> col-sm-6">
+        				<hr class="section-heading-spacer">
+        				<div class="clearfix"></div>
+        				<h2 class="section-heading">
+        				    <a href="<?php echo $this->basepath('news/view/'.$news->getId());?>">
+        					<?php echo $news->getTitle();?>
+        					</a>
+        				</h2>
+        				<p class="lead">
+        					<?php echo $news->getNewsText();?>
+        				</p>
+        			</div>
+        			<div class="col-lg-5 <?php echo $key % 2 == 0 ? 'col-lg-offset-2' : 'col-sm-pull-6';?> col-sm-6">
+        				<img class="img-responsive" src="<?php echo $this->basepath('uploads/news/'.$news->getPhoto());?>" alt="">
+        			</div>
+        		</div>
+        
+        	</div>
+        	<!-- /.container -->
+        
+        </div>
+        <!-- /.content-section-a -->
+        <?php
+    }
+else:
+    ?>
+    <h2>Nothing Found!</h2>
+    <?php
+endif;
+?>

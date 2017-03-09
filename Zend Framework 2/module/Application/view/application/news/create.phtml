@@ -1,0 +1,51 @@
+<?php
+
+$form = $this->form;
+$form->prepare();
+$form->setAttribute('action', $this->url('create_news'));
+?>
+
+<div class="content-section-a login-content">
+	<div class="row">
+		<div class="header-login col-lg-12 col-md-12 col-sm-12">
+            <h1>Register Here:</h1>
+            <?php echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));?>
+            <?php echo $this->flashMessenger()->render('error', array('alert', 'alert-danger'));?>
+            
+            <?php 
+            if($this->error){
+                ?>
+                <div class="alert alert-danger">
+                    <ul>
+                    <?php if(!empty($this->exception_message)):?>
+                        <?php foreach ($this->exception_message as $key => $message):?>
+                            <li><?php echo isset($message['isEmpty']) ? $message['isEmpty'] : $message;?></li>
+                        <?php endforeach;?>
+                    <?php endif;?>
+                    </ul>
+                </div>
+                <?php
+            }
+            ?>
+            
+			<div>
+				<?php echo $this->form()->openTag($form) ?>
+                
+                <?php foreach ($form as $element): ?>
+                <p class="form-row">
+                    <?php if ($element instanceof Zend\Form\Element\Textarea): ?>
+                        <?php echo $this->formTextarea($element) ?>
+                    <?php else: ?>
+                        <?php echo $this->formInput($element) ?>
+                    <?php endif ?>
+                </p>
+                <?php endforeach ?>
+                
+                <?php if ($this->redirect): ?>
+                    <input type="hidden" name="redirect" value="<?php echo $this->escapeHtml($this->redirect) ?>" />
+                <?php endif ?>
+            <?php echo $this->form()->closeTag() ?>
+			</div>
+		</div>
+	</div>
+</div>

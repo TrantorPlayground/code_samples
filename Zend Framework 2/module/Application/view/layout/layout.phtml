@@ -1,0 +1,86 @@
+<?php echo $this->doctype(); ?>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <?php echo $this->headTitle('ZF2 '. $this->translate('Skeleton Application'))->setSeparator(' - ')->setAutoEscape(false) ?>
+
+        <?php echo $this->headMeta()
+            ->appendName('viewport', 'width=device-width, initial-scale=1.0')
+            ->appendHttpEquiv('X-UA-Compatible', 'IE=edge')
+        ?>
+
+        <!-- Le styles -->
+        <?php echo $this->headLink(array('rel' => 'shortcut icon', 'type' => 'image/vnd.microsoft.icon', 'href' => $this->basePath() . '/img/favicon.ico'))
+                        ->prependStylesheet($this->basePath('css/style.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap-theme.min.css'))
+                        ->prependStylesheet($this->basePath('css/bootstrap.min.css')) ?>
+
+        <!-- Scripts -->
+        <?php echo $this->headScript()
+            ->prependFile($this->basePath('js/bootbox.min.js'))
+            ->prependFile($this->basePath('js/bootstrap.min.js'))
+            ->prependFile($this->basePath('js/jquery.min.js'))
+            ->prependFile($this->basePath('js/respond.min.js'), 'text/javascript', array('conditional' => 'lt IE 9',))
+            ->prependFile($this->basePath('js/html5shiv.js'),   'text/javascript', array('conditional' => 'lt IE 9',))
+        ; ?>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Newsstand') ?></a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="<?php echo ($this->url() == $this->url('home') ? 'active' : '');?>"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
+                        <li class="<?php echo ($this->url() == $this->url('rss_feeds') ? 'active' : '');?>"><a href="<?php echo $this->url('rss_feeds') ?>"><?php echo $this->translate('RSS Feeds') ?></a></li>
+                        <?php if($this->zfcUserIdentity()): ?>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">News <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                              <li><a href="<?php echo $this->url('news'); ?>">Listing</a></li>
+                              <li><a href="<?php echo $this->url('create_news'); ?>">Create</a></li>
+                            </ul>
+                        </li>
+                        <?php endif;?>
+                    </ul>
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <?php if(!$this->zfcUserIdentity()): ?>
+                          <li class="<?php echo ($this->url() == $this->url('zfcuser/login') ? 'active' : '');?>"><a href="<?php echo $this->url('zfcuser/login') ?>">Login</a></li>
+                          <li class="<?php echo ($this->url() == $this->url('zfcuser/register') ? 'active' : '');?>"><a href="<?php echo $this->url('zfcuser/register') ?>">Register</a></li>
+                        <?php else: ?>
+                        <li class="dropdown">
+                            <a aria-expanded="false" role="button" data-toggle="dropdown" class="dropdown-toggle" href="#">Hi, <?php echo $this->zfcUserIdentity()->getFirstname().' '.$this->zfcUserIdentity()->getLastname();?> <span class="caret"></span></a>
+                            <ul role="menu" class="dropdown-menu">
+                              <li><a href="<?php echo $this->url('zfcuser'); ?>">Profile</a></li>
+                              <li><a href="<?php echo $this->url('zfcuser/logout'); ?>">Logout</a></li>
+                            </ul>
+                        </li>
+                        <?php endif?>
+                    </ul>
+                    
+                
+                </div><!--/.nav-collapse -->
+                
+                
+            
+            </div>
+        </nav>
+        <div class="container">
+            <?php echo $this->content; ?>
+            <hr>
+            <footer>
+                <p>&copy; 2005 - <?php echo date('Y') ?> by Zend Technologies Ltd. <?php echo $this->translate('All rights reserved.') ?></p>
+            </footer>
+        </div> <!-- /container -->
+        <?php echo $this->inlineScript() ?>
+    </body>
+</html>

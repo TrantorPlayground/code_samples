@@ -1,0 +1,33 @@
+<?php
+$form = $this->loginForm;
+$form->prepare();
+$form->setAttribute('action', $this->url('zfcuser/login'));
+$form->setAttribute('method', 'post');
+?>
+<div class="content-section-a login-content">
+	<div class="row">
+		<div class="header-login col-lg-4 col-md-4 col-sm-12 col-md-offset-4">
+            <h1>Login here:</h1>
+            <?php echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));?>
+            <?php echo $this->flashMessenger()->render('error', array('alert', 'alert-danger'));?>
+			<div>
+				<?php echo $this->form()->openTag($form) ?>
+				    <?php echo $this->formElementErrors($form->get('identity')) ?>
+					<p class="form-row">
+						<?php echo $this->formInput($form->get('identity')) ?>
+					</p>
+					<p class="form-row">
+						<?php echo $this->formInput($form->get('credential')) ?>
+					</p>
+					<p class="form-row">
+						<?php echo $this->formButton($form->get('submit')) ?>
+					</p>
+				<?php echo $this->form()->closeTag() ?>
+                <?php if ($this->enableRegistration) : ?>
+                <?php echo $this->translate('Not registered?'); ?> <a href="<?php echo $this->url('zfcuser/register') . ($this->redirect ? '?redirect='.$this->escapeUrl($this->redirect) : '') ?>"><?php echo $this->translate('Register!'); ?></a>
+                <?php endif; ?>
+			</div>
+		</div>
+		
+	</div>
+</div>

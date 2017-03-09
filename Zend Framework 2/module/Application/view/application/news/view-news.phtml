@@ -1,0 +1,18 @@
+<h1 class="alert h1-heading"><?php echo $this->news->getTitle();?> <a data-tooltip="tooltip" title="Download as PDF" data-placement="bottom" href="<?php echo $this->basepath('news/generate/pdf/'.$this->news->getId());?>" style="float:right;"><span class="glyphicon glyphicon-download-alt aria-hidden="true"></span></a></h1>
+
+<?php echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));?>
+<?php echo $this->flashMessenger()->render('error', array('alert', 'alert-danger'));?>
+<?php echo $this->flashMessenger()->render('warning', array('alert', 'alert-warning'));?>
+ 
+
+<div>
+    
+    <article>
+        <p><?php echo $this->news->getNewsText();?></p>
+        <div align="center"><img class="img-responsive" src="<?php echo BASE_URL.$this->basepath('uploads/news/'.$this->news->getPhoto());?>" alt=""></div>
+    </article>
+</div>
+
+<?php
+$this->inlineScript ()->prependFile ( $this->basePath () . '/js/application/index.js' );
+?>

@@ -1,0 +1,23 @@
+<?php echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));?>
+<?php echo $this->flashMessenger()->render('error', array('alert', 'alert-danger'));?>
+<?php echo $this->flashMessenger()->render('warning', array('alert', 'alert-warning'));?>
+
+<h1>Email Template Page</h1>
+<blockquote>
+<code>We can send email using following custom function on live domain<br></code>
+<code>
+$this->app->sendEmail($htmlMarkup, $to, $recieverName, $subject, $from = NULL, $senderName = NULL);
+</code>
+</blockquote>
+<blockquote>
+<code>Path is => module\Application\src\Application\Mapper\AppSqlMapper.php</code>
+</blockquote>
+<h3>Hi , <?php echo $this->name;?></h3>
+<hr>
+<p>
+Just click "Activate Now" to complete your registration. That's all there is to it! 
+</p>
+<p><a class="btn btn-primary" href="<?php echo $this->basepath('user/verify/email/'.$this->token);?>">Activate Now</a></p>
+<hr>
+<p>Thanks,</p>
+<p>Test Team</p>

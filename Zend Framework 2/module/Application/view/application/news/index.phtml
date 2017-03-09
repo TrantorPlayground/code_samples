@@ -1,0 +1,31 @@
+<!--
+6) RSS Feeds
+-->
+<h1 class="alert h1-heading">My published news list</h1>
+
+<?php echo $this->flashMessenger()->render('success', array('alert', 'alert-success'));?>
+<?php echo $this->flashMessenger()->render('error', array('alert', 'alert-danger'));?>
+<?php echo $this->flashMessenger()->render('warning', array('alert', 'alert-warning'));?>
+<?php 
+if(!empty($this->news)):
+    foreach ($this->news as $news){
+        ?>
+        <div>
+            <h1><a href="<?php echo $this->basepath('news/view/'.$news->getId());?>"><?php echo $news->getTitle();?></a> <a data-id="<?php echo $news->getId();?>" class="delete-news" href="javascript:void(0);"><span class="text-danger pull-left glyphicon glyphicon-remove" aria-hidden="true"></span></a></h1>
+            <article>
+                <img class="img-responsive pull-right" src="<?php echo $this->basepath('uploads/news/thumbnails/120x120/'.$news->getPhoto());?>" alt="">
+                <p><?php echo $news->getNewsText();?></p>
+            </article>
+        </div>
+        <div style="clear: both;"></div>
+        <?php
+    }
+else:
+    ?>
+    <h2>Nothing Found!</h2>
+    <?php
+endif;
+?>
+<?php
+$this->inlineScript ()->prependFile ( $this->basePath () . '/js/application/index.js' );
+?>
